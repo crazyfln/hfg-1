@@ -1,0 +1,47 @@
+box: gone/python
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    # A step that sets up the python virtual environment
+    - virtualenv:
+        name: setup virtual environment
+        install_wheel: false # Enable wheel to speed up builds (experimental)
+
+    # # Use this virtualenv step for python 3.2
+    # - virtualenv
+    #     name: setup virtual environment
+    #     python_location: /usr/bin/python3.2
+
+    # A step that executes `pip install` command.
+    - pip-install
+
+    # # This pip-install clears the local wheel cache
+    # - pip-install:
+    #     clean_wheel_dir: true
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo python information
+        code: |
+          echo "python version $(python --version) running"
+          echo "pip version $(pip --version) running"
+    - script:
+        name: set env vars
+        code: |
+          export DJANGO_SETTINGS_MODULE=hfg.settings.wercker
+    - script:
+        name: Enable virtual display
+        code: |
+          # Start xvfb which gives the context an virtual display
+          # which is required for tests that require an GUI
+          export DISPLAY=:99.0
+          start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+          # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
+          sleep 3
+
+    - script:
+        name: test
+        code: |
+          python manage.py test

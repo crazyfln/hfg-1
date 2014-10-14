@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Contact Us | Home For Grandma
+{% endblock title %}
+
+{% block SEO %}
+ <meta name="description" content="Have questions? Home For Grandma is here to help and point you in the right direction. Contact us via the contact form and we'll get back to you shortly!">
+{% endblock SEO %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+<div class="contact-page">
+  <div class="contact-background padder-80">
+
+    <!-- <iframe id='' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3303.5259436201477!2d-118.05530899999998!3d34.1072828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2da51b519d1c7%3A0xf06421694128abea!2s9868+Las+Tunas+Dr!5e0!3m2!1sen!2sus!4v1403031868096" width="600" height="450" frameborder="0" style="border:0"></iframe> -->
+
+    <div id="map"></div>
+
+  </div>
+
+
+  <div class="container padder-100">
+    <div class="col-sm-7">
+      <h1>Contact Us</h1>
+      <p>Have a question or need help? Send us a message.</p>
+      <hr>
+
+      <form action="{% url 'contact' %}" method='post'>
+        {% csrf_token %}
+        <div>
+          <table>
+            <tr><td> {{ form.name }}</td></tr>
+            <tr><td> {{ form.name.errors }}</td></tr>
+
+            <tr><td> {{ form.email }}</td></tr>
+            <tr><td> {{ form.email.errors }}</td></tr>
+
+            <tr><td> {{ form.contact_phone }}</td></tr>
+            <tr><td> {{ form.contact_phone.errors }}</td></tr>
+
+            <tr><td> {{ form.message }}</td></tr>
+            <tr><td> {{ form.message.errors }}</td></tr>
+
+          </table>
+        </div>
+
+
+        <button type='submit' name="submit" class='button-blue'>Send a Message</button>
+
+      </form>
+    </div>
+    <div class="col-sm-offset-1 col-sm-4">
+      <div id="sidebar">
+        <div id="social-links">
+          <a href='https://twitter.com/HomeForGrandma' target="_blank"><img src='{% static 'img/icon_twitter.png' %}'/></a>
+          <a href='https://www.facebook.com/homeforgrandma' target="_blank"><img src='{% static 'img/icon_facebook.png' %}'/></a>
+          <a href='https://plus.google.com/116428925593023304071/posts' target="_blank"><img src='{% static 'img/icon_google_plus.png' %}'/></a>
+        </div>
+        <hr>
+        <div id="address">
+          <p class='side-info'>9868 Las Tunas Dr. Temple City, CA 91780</p>
+          <a href="#"><span>View Map</span></a>
+        </div>
+        <hr>
+        <div id="contact-info">
+          <a href="#"><span>info@homeforgrandma.com</span></a>
+          <p class='side-info'><a href='tel:18004340324'>1 (800) 434-0324</a></p>
+        </div>  
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbW9DKdzlTll5WQHJ4KCMTMNMlSUimv2A&sensor=false"></script>
+<script type="text/javascript">
+ // When the window has finished loading create our google map below
+ google.maps.event.addDomListener(window, 'load', init);
+ function init() {
+
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(53.385873, -1.471471),
+
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [{"featureType":"water","stylers":[{"saturation":43},{"lightness":-11},{"hue":"#0088ff"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"},{"saturation":-100},{"lightness":99}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#808080"},{"lightness":54}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#ece2d9"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#ccdca1"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#767676"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b8cb93"}]},{"featureType":"poi.park","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","stylers":[{"visibility":"on"}]},{"featureType":"poi.medical","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","stylers":[{"visibility":"simplified"}]}]
+  };
+   var mapElement = document.getElementById('map');
+  var map = new google.maps.Map(mapElement, mapOptions);
+}
+
+
+
+
+</script>
+
+
+{% endblock content %}

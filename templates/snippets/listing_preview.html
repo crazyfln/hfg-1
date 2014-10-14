@@ -1,0 +1,44 @@
+{% load static from staticfiles %}
+{% load thumbnail %}
+<div class="col-xs-4">
+
+  <a href="{{ facility.get_absolute_url }}?{{ search_query}}" class="listing-link">
+    <div class="listing-preview" {% if facility.locationCoord %}data-lat="{{ facility.locationCoord.x }}" data-long="{{ facility.locationCoord.y }}"{% else %} data-lat='none' data-long='none' {% endif %} id="{{ facility.slug }}">
+      {% if user.is_authenticated %}
+        <div class="heart-holder" data-url="{% url 'favorite' facility.slug %}" data-logged_in='yes' data-toggle="tooltip" data-placement="top" title="Save to favorites">
+          <img class='heart-hearted'{% if not user in facility.favorited_by.all %}style="display:none"{% endif %} src="{% static 'img/icon_hearted_orange.png' %}"/>
+          <img class='heart-not-hearted'{% if user in facility.favorited_by.all %}style="display:none"{% endif %} src="{% static 'img/icon_not_hearted.png' %}"/>
+        </div>
+      {% else %}
+        <div class="heart-holder" data-logged_in='no' data-toggle="modal tooltip" data-target="#Registration-Modal-1" data-placement="top" title="Save to favorites">
+          <img class='heart-not-hearted' src="{% static 'img/icon_not_hearted.png' %}"/>
+        </div>
+      {% endif %}
+
+      <img class='preview-pic' src="{{ facility.get_featured_image.image|thumbnail_url:'listing_preview' }}"/>
+      <div class="clear"></div>
+      <div class='truncate-extra listing-tag'>
+        {% for type in facility.facility_types.all %}
+        {{ type.name }}
+        {% endfor %}
+      </div>
+      <div class="clear"></div>
+
+      <p class="listing-title">{{ facility.name|truncatechars:25 }}</p>
+      <p class="listing-location">{{ facility.city }}</p>
+
+      <hr>
+      <div class='listing-from-price-holder'>
+        <p class='from'>From</p>
+        <p class="listing-price">{{ facility.get_min_price }}</p>
+      </div>
+      <div class='beds right'>
+        <img class='bed-img' src="{% static 'img/bed.png' %}"/>
+        <span class='bed-number'>{{ facility.capacity }}</span>
+      </div>
+      <div class="clear"></div>
+      <hr>
+      <p class="listing-else">{{ facility.description_short|truncatechars:38 }}</p>
+    </div>
+  </a>
+</div>

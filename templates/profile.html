@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% block title %}
+My Profile
+{% endblock title %}
+{% block SEO %}
+ <meta name="description" content="This is test Content">
+{% endblock SEO %}
+{% load static from staticfiles %}
+{% block bodyid %}
+  id="beige-body"
+{% endblock bodyid %}
+
+{% block content %}
+<div class="profile">
+  <div class="container padder-100" style='padding-top: 200px;'>
+    {% comment %}
+    <!-- {% include 'profile_nav.html' with user=request.user %} -->
+<!-- <ul class="nav nav-tabs" role="tablist">
+<li class='' id='favorite-list'><a href="" role="tab" data-toggle="tab">Favorites</a></li>
+<li class='' id='profile-list'><a href="{% url 'profile' %}" role="tab" data-toggle="tab">My Profile</a></li>
+<li class='' id='reset-list'><a href="{% url 'auth_password_reset' %}" role="tab" data-toggle="tab">Reset Password</a></li>
+</ul> -->
+ {% endcomment %}
+ 
+<div class="name-holder">
+  <h3 id='main-name'>{{ user.get_full_name }}</h3>
+</div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class='active'><img src='{% static 'img/icon_tabs_heart.png' %}'/><a href="#favorites" role="tab" data-toggle="tab">My Favorites</a></li>
+  <li><img src='{% static 'img/icon_tabs_profile.png' %}'/><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
+  <li><img src='{% static 'img/icon_tabs_check.png' %}'/><a href="#reset" role="tab" data-toggle="tab">Reset Password</a></li>
+  <!-- <li><img src='{% static 'img/icon_tabs_phone.png' %}'/><a href="#tour-request-form" role="tab" data-toggle="tab">Request A Tour Info</a></li> -->
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+
+  <div class="tab-pane active" id="favorites">
+    <div class="row">
+      {% for listing in favorites_list %}
+      {% include 'snippets/listing_preview.html' with facility=listing %} 
+
+      {% empty %}
+      <h3 id='favorites'>You have no favorited facilities</h3>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tab-pane" id="profile">
+    <form action="{% url 'profile' %}" method="post">
+      {% csrf_token %}
+      <div class="table-holder"> 
+        <table>
+          <tr>
+            <td>{{form.first_name.label_tag }}</td>
+            <td>{{form.last_name.label_tag }}</td>
+            <td>{{form.email.label_tag }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.first_name }}</td>
+            <td>{{ form.last_name }}</td>
+            <td>{{ form.email }}</td>
+          </tr>
+          <tr>
+            <td>{{  form.phone.label_tag  }}  </td>
+            <td>{{  form.searching_for.label_tag  }}</td>
+            {% comment %}
+            <td>{{  form.resident_first_name.label_tag  }}  </td>
+            {% endcomment %}
+          </tr>
+          <tr>
+            <td>{{ form.phone }}</td>
+            <td>
+              <div class="searching-for-holder">{{ form.searching_for }}</div>
+            </td>
+            {% comment %}
+            <td>{{  form.resident_first_name  }}  </td>
+            {% endcomment %}
+          </tr>
+          {% comment %}
+          <tr>
+            <td>{{ form.conditions.label_tag }}</td>
+          </tr>
+          <tr>
+
+            <td colspan="3"> 
+              <div class="checkbox-td">
+                {% for condition in form.conditions %}
+                  {{ condition.tag }} <label for="id_condition_{{condition.index}}"><span class="label-text">{{condition.choice_label }}</span></label>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+          {% endcomment %}
+          <tr>
+            <td><label>Care Needs</label></td>
+          </tr>
+          <tr>
+            <td colspan="3"> 
+              <div class="checkbox-td">
+                <div class="checkbox-holder">
+                  {{ form.care_bathing }}
+                  {{ form.care_bathing.label_tag }}
+                  <p class="checkbox-label">Bathing</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_diabetic }}
+                  {{ form.care_diabetic.label_tag }}
+                  <p class="checkbox-label">Diabetic Care</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_medical_assistance }}
+                  {{ form.care_medical_assistance.label_tag }}
+                  <p class="checkbox-label">Medical Assistance</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_toileting }}
+                  {{ form.care_toileting.label_tag }}
+                  <p class="checkbox-label">Toileting</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_memory_issues }}
+                  {{ form.care_memory_issues.label_tag }}
+                  <p class="checkbox-label">Memory Issues</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_diagnosed_memory }}
+                  {{ form.care_diagnosed_memory.label_tag }}
+                  <p class="checkbox-label">Diagnosed Memory Condition</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_combinative }}
+                  {{ form.care_combinative.label_tag }}
+                  <p class="checkbox-label">Combinative</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.care_wandering }}
+                  {{ form.care_wandering.label_tag }}
+                  <p class="checkbox-label">Wandering</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Payment Options</label></td>
+          </tr>
+          <tr>
+            <td colspan="3"> 
+              <div class="checkbox-td">
+                <div class="checkbox-holder">
+                  {{ form.pay_private_pay }}
+                  {{ form.pay_private_pay.label_tag }}
+                  <p class="checkbox-label">Private Pay</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.pay_longterm_care }}
+                  {{ form.pay_longterm_care.label_tag }}
+                  <p class="checkbox-label">Longterm Care</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.pay_veterans_benefits }}
+                  {{ form.pay_veterans_benefits.label_tag }}
+                  <p class="checkbox-label">Veterans Benefits</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.pay_medicare }}
+                  {{ form.pay_medicare.label_tag }}
+                  <p class="checkbox-label">Medicare</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.pay_medicaid }}
+                  {{ form.pay_medicaid.label_tag }}
+                  <p class="checkbox-label">Medicaid</p>
+                </div>
+                <div class="checkbox-holder">
+                  {{ form.pay_ssi }}
+                  {{ form.pay_ssi.label_tag }}
+                  <p class="checkbox-label">SSI</p>
+                </div>
+              </div> 
+            </td>
+          </tr>
+          <tr>
+            <td>{{ form.budget.label_tag }}</td>
+            <td>{{  form.preferred_contact.label_tag  }}</td>
+            <td><label>Move in Date</label></td>
+          </tr>
+          <tr>
+            <td>
+              {% for option in form.budget %}
+                {{ option.tag }} <label for="id_budget_{{ option.index }}"><span class="label-text">{{ option.choice_label }}</span></label>
+                <div class="clear"></div>
+              {% endfor %}
+            </td>
+            <td>
+              {% for option in form.preferred_contact %}
+                {{ option.tag }} <label for="id_preferred_contact_{{ option.index }}"><span class="label-text">{{ option.choice_label }}</span></label>
+                <div class="clear"></div>
+              {% endfor %}
+            </td>
+            <td>{{ form.planned_move_date }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.health_description.label_tag }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.health_description }}</td>
+          </tr>
+        </table>           
+<!-- need to add
+
+     Planned Financial Method
+     Special Care Need
+    Personal Note
+     Preferred Method of contact
+ -->
+      </div>
+      <button class='button-blue' type="submit">update</button>
+    </form>
+
+  </div>
+
+  <div class="tab-pane" id="reset">
+    <div class="table-holder"> 
+      {% include 'registration/password_change_form.html' with form=password_reset_form %}
+    </div>
+    
+  </div>
+  <!-- <div class="tab-pane" id="tour-request-form">
+    <div class="table-holder">
+      Request form here.
+      these two are items not 
+           saved since they should vary each time.
+      describe health condition
+      planned move in time frame
+
+      <div class="custom-select-holder">
+        {{ form.searching_for }}
+      </div>
+
+      these form items are the ones that we'll store
+      a default value for each time. 
+      searching for
+      planned financial method
+      budget
+      special care?
+      leave a note
+      preferred method of contatct
+    </div>
+  </div> -->
+</div>
+</div>
+
+
+{% endblock content %}

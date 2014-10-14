@@ -1,0 +1,53 @@
+//Scss for buttons goes here.
+
+
+%button {
+    height: 40px;
+    padding: 0px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: none;
+    color: #fff;
+    outline: none;
+    border-radius: 2px;
+}
+
+.button-blue {
+    @extend %button;
+    background-color:$button-blue;
+}
+
+.button-orange {
+    @extend %button;
+    background-color: $button-orange;
+}
+
+.button-header {
+    @exten %button;
+    height:30px;
+}
+
+
+.button-special-login {
+    margin-left: 0px;
+    float:left;
+}
+
+.button-special-register {
+    float:right;
+}
+
+
+
+.button-requeest-tour-custom {
+    width:15px!important;
+
+    span {
+        float:right;
+    }
+}
+
+.button-create-account {
+    margin-left: 70px !important;
+    margin-top: 25px !important;
+}

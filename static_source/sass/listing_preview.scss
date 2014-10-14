@@ -1,0 +1,153 @@
+a.listing-link {
+    text-decoration: none;
+}
+
+div.ui-tooltip.ui-widget {
+    border:none; 
+    color:$white;
+    background:$secondary;
+    border-radius:0px;
+}
+.ui-tooltip-content {
+    color:$white;
+    background-color:$secondary;
+}
+
+.listing-preview {
+    height:472px;
+    background-color: $white;
+    border: 1px solid $border;
+    border-radius: 2px;
+    padding-left: 15px;
+    padding-right:15px;
+    cursor:pointer;
+    margin-bottom: 15px;
+
+    img.preview-pic {
+        width: 315px;
+        margin-left:-15px;
+        height: 215px;
+        margin-bottom: 15px;
+    }
+
+    // .listing-img-small {
+    //     height: 226px;
+    // }
+
+    .heart-holder {
+
+        height: 21px;
+        width: 22px;
+        position: absolute;
+        top:15px;
+        left: 25px;
+
+        &:hover {
+            cursor:pointer;
+        }
+    }
+
+//was going to use this for ajax styling a different way.
+//used .heart-hearted below instead
+
+    // .heart-holder-full {
+    //     background: image-url('img/icon_hearted.png');
+    // }
+
+    .heart-hearted {
+        display: inline;
+        height: 100%;
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .heart-not-hearted {
+        @extend .heart-hearted;
+    }
+
+
+    .listing-tag {
+        color:$secondary;
+        font-size: 13px;
+        text-transform: uppercase;
+        float:left;
+        margin: 0 5px 0 0px;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        height: 1em;
+        white-space: nowrap;
+    }
+    .truncate-extra {
+        text-overflow:ellipsis;
+        overflow:hidden;
+        width: 200px;
+        height:15px;
+        display:block;
+    }
+
+    .listing-title {
+        color: $dark;
+        font-size: 21px;
+        margin-top:7px;
+    }
+
+    .listing-location {
+        color: $light;
+        font-size: 18px;
+    }
+
+    .listing-from-price-holder {
+        margin-top: 35px;
+        position: relative;
+        float:left;
+    }
+
+    img.bed-img {
+        position:relative;
+        height:100%;
+        margin:0 !important;
+    }
+
+    .beds {
+        color:$primary;
+        font-size:18px;
+        .bed-number {
+
+        }
+    }
+
+    .from {
+        text-transform: uppercase;
+        color: $light;
+        font-size: 12px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 1px;
+    }
+
+    .listing-price {
+        color: $secondary; 
+        font-size: 20px;
+        font-weight:bold;
+        position: absolute;
+        bottom:-5px;
+        left: 45px;
+    }
+
+    .listing-next {
+        color: $listing-next;
+        float: right;
+        margin: 5px 0 0 0;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .listing-else {
+        color: $light;
+        font-size: 14px;
+    }
+}
+
+
+
+

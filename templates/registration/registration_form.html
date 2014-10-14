@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+<div id='' class="background-beige padder-100 margin-top-80">
+  <div class="registration-box">
+    <center> <h3>Register</h3></center>
+
+    <form action='{{ request.get_full_path }}{% if next %}?next={{ next }}{% endif %}' method="POST">
+      {% csrf_token %}
+
+
+      <hr>  
+      {{ form.first_name }}
+
+      <hr>
+      {{ form.first_name.errors }}
+      <hr>
+
+      {{ form.last_name }}
+
+      <hr>
+      {{ form.last_name.errors }}
+      <hr>
+
+      {{ form.phone_number }}
+
+      <hr>
+      {{ form.phone_number.errors }}
+
+      <hr>
+      {{ form.email }}
+      
+      <hr>
+      {{ form.email.errors }}
+      <hr>
+
+      {{ form.password1 }}
+      <hr>
+
+      {{ form.password1.errors }}
+
+      <hr>
+      {{ form.password2 }}
+      <hr>
+
+      {{ form.password2.errors }}
+      <hr>
+      <div class="clear"></div>
+      <center><button class="button-blue submit-b margin-top-10">Submit</button></center>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+{% block body_media %}
+<script type="text/javascript">
+$(function(){
+ $("form").submit(function(){
+   mixpanel.track("register");
+ })
+})
+</script>
+{% endblock %}
+

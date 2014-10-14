@@ -1,0 +1,162 @@
+@import "compass/css3/background-size";
+
+@import "compass/layout.scss";
+// @import "compass/css3/appearance";
+
+@include sticky-footer(257px, "#main", "#main-footer", "#footer");
+
+@import "variables";
+@import "typography";
+@import "registration";
+@import "buttons";
+@import "footer";
+$bootstrap-sass-asset-helper: false;
+@import "bootstrap";
+@import "nav";
+@import "index";
+@import "listing_preview";
+@import "carousel";
+@import "receive_reward";
+@import "facility_detail";
+@import "search";
+@import "contact";
+@import "about";
+@import "profile";
+@import "blog";
+@import "checkboxes";
+@import "custom_input";
+@import "alerts";
+
+
+//global rules and helper classes
+
+
+#map {
+    width: 750px;
+    height: 500px;
+}
+
+.container {
+    width: 1040px !important;
+    min-width: 1040px !important;
+    margin: 0 auto;
+}
+
+body {
+ min-width: 1040px !important;
+}
+
+#beige-body {
+    background-color:$beige-background;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+
+}
+
+p {
+    font-family: $primaryFont;
+}
+
+h2 {
+    // font-family: $font5;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float:right;
+}
+
+.bold {
+    font-weight:bold;
+}
+
+.primary {
+    color: $primary;
+}
+
+.secondary {
+    color: $secondary;
+}
+.margin-right-0 {
+    margin-right:0px;
+}
+
+.padding-top-15 {
+    padding-top:15px;
+}
+
+.margin-top-10 {
+    margin-top:10px;
+}
+
+.margin-top-20 {
+    margin-top:20px;
+}
+
+.margin-top-30 {
+    margin-top:30px;
+}
+
+.padder-top-20 {        
+    padding-top: 20px;
+}
+
+.padder-60 {
+    padding-top:60px;
+    padding-bottom:60px;
+}
+
+.margin-top-80 {
+    margin-top: 80px; 
+}
+
+.margin-top-70 {
+    margin-top: 70px; 
+}
+
+.padder-top-40 {
+    padding-top:40px;
+}
+
+.padder-40 {
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+.padder-80{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.padder-100{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.background-white {
+    background-color: $white;
+}
+
+.background-beige {
+    background-color: $beige-background;
+}
+
+.background-ghost {
+    background-color: $ghost-background;
+}
+
+
+.padding-top-0 {
+    padding-top:0px !important;
+}
+
+
+.clear {
+    clear: both;
+    margin: 0 auto;
+}

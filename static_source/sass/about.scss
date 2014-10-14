@@ -1,0 +1,21 @@
+
+.about {
+
+    .background {
+        background:image-url('img/hfg_about.jpg');
+        height:585px;
+        background-size: cover;
+    }
+
+    h2 {
+        color: $secondary;
+        margin: 0 0 40px 0;
+        font-weight: 200;
+    }
+
+    p {
+        line-height: 1.9em;
+        color: $light;
+        font-size: 20px;
+    }
+}

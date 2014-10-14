@@ -1,0 +1,360 @@
+.registration-box {
+    height: 100%;
+    border: 1px solid $border;
+    background-color: $white;
+    width: 430px;
+    margin: 0 auto;
+    padding: 20px 0px 20px 0px;
+
+    hr {
+        margin:1px 0 1px 0 !important;
+        height:1px;
+        background-color:#ccc;
+    }
+
+
+    input {
+        width: 100%;
+        border: 1px solid $border;
+    }
+
+    table {
+        width:100%;
+    }
+
+
+    h3 {
+        color:$secondary;
+        margin-bottom: 20px;
+    }
+
+
+    a {
+        color:$secondary;
+        margin-top: 15px;
+        display:block;
+    }
+    //input focus for inputs in error pages, after modals
+     input:focus {
+        outline-color:$secondary;
+    }
+
+    p {
+        color:$secondary;
+    }
+
+}
+
+
+.modal {
+
+    hr {
+        margin:1px 0 1px 0 !important;
+        height:1px;
+        background-color:#ccc;
+    }
+
+    .modal-header {
+        border-bottom:none;
+    }
+    .modal-content {
+        width:400px;
+    }
+
+    h3 {
+        color:$secondary;
+    }
+
+    .modal-body {
+        padding: 15px 0 15px 0;
+    }
+
+    table {
+        width:100%;
+    }
+
+    a, p {
+        margin-left:15px;
+        display:block;
+        margin-top:15px;
+        color:$secondary;
+    }
+
+    button {
+        margin:0px 0 15px 0px;
+    }
+    .login-b {
+        margin-left: 25px;
+    }
+    .submit-b {
+        margin-top:25px;
+    }
+
+    .login-link {
+        color:$secondary;
+        cursor:pointer;
+    }
+    //input focus for inputs in modals
+    input:focus {
+        outline-color:#008185;
+        // border-color:$border;
+        // box-shadow:0 0 10px $secondary;
+        // z-index:-2;
+    }
+}
+
+
+.login-b {
+    margin-left: 25px;
+    margin-right:25px;
+}
+
+a.push {
+    display:block;
+    margin-bottom:15px;
+    margin-bottom:15px;
+}
+
+
+
+%abstract-form-dimensions {
+    width: 100%;
+    height: 40px;
+    color: $dark;
+    padding-left: 20px;
+    // outline:none;
+    border: none !important;
+    margin-top: -1px;
+    border-left:none;
+    border-right:none;
+    font-size:16px;
+
+}
+
+%abstract-form-with-border {
+   border-left: 1px solid $border;
+   border-right: 1px solid $border;
+}
+
+
+#id_first_name, #id_last_name, #id_email, #id_password1, #id_password2, #id_username, #id_password, #id_name, #id_party_type,
+#id_new_password1, #id_new_password2, #id_old_password, #id_phone_number, #id_phone_num {
+    @extend %abstract-form-dimensions;
+}
+
+.non-modal-input-border {
+    border: 1px solid #DEDDDD;
+}
+
+#id_phone {
+    height:40px;
+    padding-left:10px;
+
+}
+
+//overridding background property of above abstract
+#id_name, #id_email {
+    border: 1px solid $border !important;
+
+}
+
+
+
+
+//custom inputs for forgot password flow 
+#id_old_password, #id_new_password1, #id_new_password2 {
+    @extend %abstract-form-dimensions;
+    @extend %abstract-form-with-border;
+}
+
+
+#id_description {
+    width:100%;
+    padding-left:20px;
+    height:130px;
+    border: 1px solid $border;
+    padding-top: 15px;
+
+
+}
+
+#id_description:focus {
+    outline-color:#008185;
+        // border-color:$border;
+        // box-shadow:0 0 10px $secondary;
+        // z-index:-2;
+    }
+
+
+// modal custom inputs below for requesting
+// a tour
+
+// textarea mixin
+@mixin modal-textarea {
+    border: 1px solid $border;
+    border-radius: 4px;
+    padding:10px 15px;
+    resize:none;
+     outline-color:$secondary;
+    // outline:none;
+}
+
+#id_health_description {
+    @include modal-textarea;
+}
+
+#id_comments {
+    @include modal-textarea;
+    width: 
+}
+
+#tour-request-form {
+
+    .modal-content {
+        width:330px;
+    }
+
+    .modal-header {
+        padding-bottom:0px;
+    }
+
+    h1 {
+        font-size:14px;
+        color:$primary;
+        margin-top:10px;
+        margin-bottom:15px;
+    }
+
+    // hr {
+    //     margin: 5px;
+    // }
+
+
+
+    button {
+        width: 259px;
+    }
+    p.checkbox-label {
+        margin:0px 0px 0px 10px;
+        color:$primary;
+
+    }
+}
+
+//input mixin
+@mixin tour-input {
+    width:263px;
+    height: 40px;
+    color: $light;
+    // outline:none;
+    border: 1px solid $border;
+    padding-left: 15px;
+    margin: 0 0 15px 0;
+    border-radius: 4px;
+}
+
+#id_planned_move_date {
+    @include tour-input;
+    background: image-url('img/icon_cal.png') no-repeat;
+    background-position-x: 235px;
+    background-position-y: 15px;
+}
+
+
+
+#id_desired_city {
+    @include tour-input;
+}
+
+#id_resident_first_name {
+    @include tour-input;
+}
+
+.align-left {
+    text-align:left;
+    margin-left: 36px;
+
+    p#f-o {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        color: $dark;
+        margin-left: 6px;
+    }
+    p {
+        float:left;
+        margin-top: -12px;
+        margin-left: 10px;
+        color: $light;
+        margin-bottom:20px;
+    }
+
+    label {
+        bottom: 10px;
+        margin-left: 7px;
+        color: $light;
+        font-weight: 500;
+        float:left;
+    }
+}
+
+
+#id_pay_private_pay {
+// -webkit-appearance: none;
+}
+
+ul.errorlist {
+    padding-left: 10px;
+    padding-top:10px;
+
+    li {
+        list-style: none;
+        color: red;
+        margin-left: 10px;
+    }
+}
+
+p.errors {
+    color: red;
+    padding-left: 10px;
+    padding-top:10px;
+    margin-left:10px;
+
+}
+
+.password-change {
+    h3 {
+        color: $secondary;
+        margin-bottom: 20px;
+    }
+    p {
+        color: $light;
+    }
+}
+
+#planned_move_date_holder {
+
+    position:relative;
+}
+
+// img.cal-icon {
+//     position:absolute;
+//     margin-left:-33px;
+//     margin-top:13px;
+// }
+
+p.list-prop-header {
+    width:80%;
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+
+p.registration-header-text {
+    font-size:18px;
+}
+
+
+
+
+
+
